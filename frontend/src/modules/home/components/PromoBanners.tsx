@@ -201,24 +201,24 @@ export default function PromoBanners() {
             <div className="inline-flex items-center gap-1.5 text-[#0066FF] text-[10px] font-black tracking-wider uppercase bg-blue-50/90 px-3 py-1 rounded-full mb-2.5 shadow-2xs border border-blue-200/70 w-fit">
               <Store size={12} className="text-[#0066FF]" /> FOR BUSINESS OWNERS
             </div>
-            <h3 className="text-xl sm:text-[22px] font-black text-slate-900 mb-1 leading-tight tracking-tight">
+            <h3 className="text-xl sm:text-[22px] font-black text-slate-900 mb-1.5 leading-tight tracking-tight">
               Get More <br />Customers
             </h3>
-            <p className="text-xs sm:text-[13px] font-medium text-slate-600 mb-3 leading-snug">
-              Grow your business with a stronger online presence on BizDial.
+            <p className="text-xs sm:text-[13px] font-medium text-slate-600 mb-3.5 leading-snug">
+              Grow your business with a stronger<br className="hidden sm:inline" /> online presence on BizDial.
             </p>
             
-            <ul className="space-y-1.5 mb-4">
-              <li className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                <CheckCircle2 size={13} className="text-[#0066FF] shrink-0" />
-                <span>Reach customers searching in your area</span>
+            <ul className="space-y-2 mb-4">
+              <li className="flex items-start gap-2 text-xs font-bold text-slate-700">
+                <CheckCircle2 size={14} className="text-[#0066FF] shrink-0 mt-0.5" />
+                <span className="leading-snug">Reach customers searching<br className="hidden sm:inline" /> in your area</span>
               </li>
               <li className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                <CheckCircle2 size={13} className="text-[#0066FF] shrink-0" />
+                <CheckCircle2 size={14} className="text-[#0066FF] shrink-0" />
                 <span>Showcase your products &amp; services</span>
               </li>
               <li className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                <CheckCircle2 size={13} className="text-[#0066FF] shrink-0" />
+                <CheckCircle2 size={14} className="text-[#0066FF] shrink-0" />
                 <span>Get direct calls and enquiries</span>
               </li>
             </ul>
