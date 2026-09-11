@@ -17,10 +17,10 @@ body {
 :root {
   --background: #F8FAFC;
   --foreground: #0F172A;
-  --primary: #431B94;
-  --primary-hover: #2D0F66;
-  --primary-light: #F3E8FF;
-  --primary-mint: #EDE9FE;
+  --primary: #0066FF;
+  --primary-hover: #0052CC;
+  --primary-light: #E5F0FF;
+  --primary-mint: #F0F6FF;
 }
 
 @theme inline {
@@ -35,9 +35,9 @@ body {
   --color-slate-500: #64748B;
 
   /* Brand Colors - Image Palette */
-  --color-primary: #431B94;
-  --color-dark-blue: #2D0F66;
-  --color-accent: #7C3AED;
+  --color-primary: #0066FF;
+  --color-dark-blue: #0040A8;
+  --color-accent: #3B82F6;
   --color-success: #10B981;
   
   /* Semantic Colors */
@@ -46,7 +46,7 @@ body {
   --color-text-primary: #0F172A;
   --color-text-secondary: #475569;
 
-  --font-sans: var(--font-poppins), sans-serif;
+  --font-sans: var(--font-geist-sans), sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -165,4 +165,26 @@ button, a {
 /* Safe area insets for phones with notches */
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ===== PREMIUM TEXT SHIMMER & GLOW ANIMATION ===== */
+@keyframes textShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(90deg, #0052CC 0%, #0066FF 25%, #38BDF8 50%, #0066FF 75%, #0052CC 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 4s ease-in-out infinite;
+  display: inline-block;
 }

@@ -1,166 +1,137 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ShieldCheck, Search, Headphones, TrendingUp } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-50/70 pt-10 sm:pt-20 pb-8 mt-12 relative overflow-hidden border-t border-slate-200/80 rounded-t-3xl sm:rounded-t-[3rem] shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
-      <div className="max-w-[1400px] mx-auto px-4 lg:px-8 xl:px-12 relative z-10">
+    <footer id="about" className="bg-white border-t border-slate-100 pt-16 pb-8 relative overflow-hidden scroll-mt-24">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 mb-10 sm:mb-14">
+        {/* Top Links Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-14">
           
-          {/* Col 1: Brand & Bio */}
-          <div className="md:col-span-6 space-y-4">
-            <Link href="/" className="text-3xl font-black tracking-tight flex items-center gap-1 group">
-              <span className="text-slate-900 font-extrabold tracking-tight">Biz</span>
-              <span className="text-[#431B94] font-black tracking-tight flex items-center">
-                Dial<motion.span animate={{ opacity: [1, 0.4, 1] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="inline-block w-2.5 h-2.5 bg-[#431B94] rounded-full ml-0.5"></motion.span>
+          {/* Logo & Social (3 cols) */}
+          <div className="lg:col-span-3">
+            <Link href="/" className="flex flex-col shrink-0 mb-3 inline-block">
+              <div className="flex items-center text-3xl font-black tracking-tight">
+                <span className="text-[#0066FF]">Biz</span>
+                <span className="text-slate-900">Dial</span>
+              </div>
+              <span className="text-[10px] text-slate-500 font-medium mt-0.5 tracking-wider uppercase">
+                India&apos;s Business Ranking Directory
               </span>
             </Link>
-            <div className="w-10 h-1 bg-[#431B94] rounded-full"></div>
-            <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium max-w-md">
-              India's most trusted local search platform to discover, connect &amp; grow with verified businesses near you.
+            <p className="text-xs font-semibold text-slate-500 mb-5">
+              Rank. Prove. Grow.
             </p>
             
-            {/* Social Icons */}
-            <div className="flex items-center gap-3 pt-2">
-              <a href="#" aria-label="Facebook" className="w-9 h-9 bg-white border border-slate-200/80 shadow-xs rounded-xl flex items-center justify-center text-[#1877F2] hover:bg-blue-50 transition-colors">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            {/* Social Brand Icons */}
+            <div className="flex items-center gap-2.5">
+              {/* Facebook */}
+              <a href="#" aria-label="Facebook" className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#0066FF] hover:text-white transition-colors">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               </a>
-              <a href="#" aria-label="Twitter" className="w-9 h-9 bg-white border border-slate-200/80 shadow-xs rounded-xl flex items-center justify-center text-[#1DA1F2] hover:bg-sky-50 transition-colors">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+              {/* Instagram */}
+              <a href="#" aria-label="Instagram" className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#0066FF] hover:text-white transition-colors">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
               </a>
-              <a href="#" aria-label="LinkedIn" className="w-9 h-9 bg-white border border-slate-200/80 shadow-xs rounded-xl flex items-center justify-center text-[#0A66C2] hover:bg-indigo-50 transition-colors">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              {/* LinkedIn */}
+              <a href="#" aria-label="LinkedIn" className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#0066FF] hover:text-white transition-colors">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.738-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
               </a>
-              <a href="#" aria-label="YouTube" className="w-9 h-9 bg-white border border-slate-200/80 shadow-xs rounded-xl flex items-center justify-center text-[#FF0000] hover:bg-red-50 transition-colors">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              {/* YouTube */}
+              <a href="#" aria-label="YouTube" className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#0066FF] hover:text-white transition-colors">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+              {/* X */}
+              <a href="#" aria-label="X" className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-[#0066FF] hover:text-white transition-colors">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               </a>
             </div>
           </div>
 
-          {/* Col 2: Navigation Links (2 columns) */}
-          <div className="md:col-span-6 grid grid-cols-2 gap-6 sm:gap-10">
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-7 h-7 rounded-lg bg-violet-50 text-[#431B94] flex items-center justify-center shrink-0">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>
-                </div>
-                <h3 className="font-extrabold text-slate-900 text-sm">Quick Links</h3>
-              </div>
-              <ul className="space-y-2.5 text-xs text-slate-600 font-semibold">
-                {[
-                  { name: 'Top Categories', href: '#categories' },
-                  { name: 'Featured Places', href: '#services' },
-                  { name: 'How It Works', href: '#how-it-works' },
-                  { name: 'Browse Locations', href: '#locations' }
-                ].map((item, idx) => (
-                  <li key={idx}>
-                    <button onClick={() => {
-                      const el = document.getElementById(item.href.substring(1));
-                      if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    }} className="hover:text-[#431B94] transition-colors text-left py-0.5 block">
-                      {item.name}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Quick Links (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="font-extrabold text-slate-900 mb-3.5 text-sm tracking-tight">Quick Links</h4>
+            <ul className="space-y-2.5 text-xs sm:text-[13px] font-semibold text-slate-600">
+              <li><Link href="/" className="hover:text-[#0066FF] transition-colors">Home</Link></li>
+              <li><Link href="/categories" className="hover:text-[#0066FF] transition-colors">Top Categories</Link></li>
+              <li><Link href="/businesses" className="hover:text-[#0066FF] transition-colors">Ranked Businesses</Link></li>
+              <li><Link href="#how-it-works" className="hover:text-[#0066FF] transition-colors">How Ranking Works</Link></li>
+              <li><Link href="/register" className="hover:text-[#0066FF] transition-colors">Rank Your Business</Link></li>
+              <li><Link href="/about" className="hover:text-[#0066FF] transition-colors">About Us</Link></li>
+            </ul>
+          </div>
 
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-7 h-7 rounded-lg bg-violet-50 text-[#431B94] flex items-center justify-center shrink-0">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-3.5 h-3.5"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></svg>
-                </div>
-                <h3 className="font-extrabold text-slate-900 text-sm">Grow With Us</h3>
-              </div>
-              <ul className="space-y-2.5 text-xs text-slate-600 font-semibold">
-                {[
-                  { name: 'List Business', href: '/register', isRoute: true },
-                  { name: 'Business Login', href: '/login', isRoute: true }
-                ].map((item, idx) => (
-                  <li key={idx}>
-                    {item.isRoute ? (
-                      <Link href={item.href} className="hover:text-[#431B94] transition-colors text-left py-0.5 block">
-                        {item.name}
-                      </Link>
-                    ) : (
-                      <button onClick={() => {
-                        const el = document.getElementById(item.href.substring(1));
-                        if (el) el.scrollIntoView({ behavior: 'smooth' });
-                      }} className="hover:text-[#431B94] transition-colors text-left py-0.5 block">
-                        {item.name}
-                      </button>
-                    )}
-                  </li>
-                ))}
-              </ul>
+          {/* Top Categories (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="font-extrabold text-slate-900 mb-3.5 text-sm tracking-tight">Top Categories</h4>
+            <ul className="space-y-2.5 text-xs sm:text-[13px] font-semibold text-slate-600">
+              <li><Link href="/search?q=restaurants" className="hover:text-[#0066FF] transition-colors">Restaurants</Link></li>
+              <li><Link href="/search?q=hospitals" className="hover:text-[#0066FF] transition-colors">Hospitals</Link></li>
+              <li><Link href="/search?q=automobiles" className="hover:text-[#0066FF] transition-colors">Automobiles</Link></li>
+              <li><Link href="/search?q=real-estate" className="hover:text-[#0066FF] transition-colors">Real Estate</Link></li>
+              <li><Link href="/search?q=education" className="hover:text-[#0066FF] transition-colors">Education</Link></li>
+              <li><Link href="/search?q=beauty" className="hover:text-[#0066FF] transition-colors">Beauty &amp; Salon</Link></li>
+            </ul>
+          </div>
+
+          {/* Support (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="font-extrabold text-slate-900 mb-3.5 text-sm tracking-tight">Support</h4>
+            <ul className="space-y-2.5 text-xs sm:text-[13px] font-semibold text-slate-600">
+              <li><Link href="/help" className="hover:text-[#0066FF] transition-colors">Help Center</Link></li>
+              <li><Link href="/contact" className="hover:text-[#0066FF] transition-colors">Contact Us</Link></li>
+              <li><Link href="/privacy" className="hover:text-[#0066FF] transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:text-[#0066FF] transition-colors">Terms &amp; Conditions</Link></li>
+              <li><Link href="/enquiry" className="hover:text-[#0066FF] transition-colors">Business Enquiry</Link></li>
+              <li><Link href="/sitemap" className="hover:text-[#0066FF] transition-colors">Sitemap</Link></li>
+            </ul>
+          </div>
+
+          {/* Newsletter (3 cols) */}
+          <div className="lg:col-span-3">
+            <h4 className="font-extrabold text-slate-900 mb-2 text-sm tracking-tight">
+              Ranking Reports Newsletter
+            </h4>
+            <p className="text-xs font-medium text-slate-500 mb-4 leading-relaxed">
+              Receive verified city leaderboard reports, quality updates, and ranking insights.
+            </p>
+            <form className="flex items-center gap-2 mb-4" onSubmit={(e) => e.preventDefault()}>
+              <input 
+                type="email" 
+                placeholder="Enter your email address" 
+                className="flex-1 px-3.5 py-2.5 rounded-lg border border-slate-200 outline-none text-xs focus:border-[#0066FF] text-slate-800"
+              />
+              <button 
+                type="submit" 
+                className="bg-[#0066FF] hover:bg-[#0052CC] text-white font-bold px-4 py-2.5 rounded-lg transition-colors text-xs cursor-pointer"
+              >
+                Subscribe
+              </button>
+            </form>
+
+            {/* Script Callout Accent */}
+            <div className="pt-2 select-none">
+              <span className="font-serif italic font-bold text-sm text-slate-600 block">
+                A Stronger India Together
+              </span>
+              <div className="w-24 h-1 mt-1 rounded-full bg-gradient-to-r from-orange-400 via-slate-300 to-green-500" />
             </div>
           </div>
 
         </div>
 
-        {/* Trust Strip (2x2 on mobile, 4 columns on desktop) */}
-        <div className="bg-white rounded-2xl p-4 sm:p-6 mb-8 shadow-xs border border-slate-200/80 grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-violet-50 text-[#431B94] flex items-center justify-center shrink-0">
-              <ShieldCheck size={20} strokeWidth={2.2} />
-            </div>
-            <div>
-              <h3 className="font-extrabold text-slate-900 text-xs sm:text-sm">Verified Listings</h3>
-              <p className="text-[10px] text-slate-500 hidden sm:block">100% Genuine businesses</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 lg:border-l border-slate-100 lg:pl-4">
-            <div className="w-10 h-10 rounded-xl bg-violet-50 text-[#431B94] flex items-center justify-center shrink-0">
-              <Search size={20} strokeWidth={2.2} />
-            </div>
-            <div>
-              <h3 className="font-extrabold text-slate-900 text-xs sm:text-sm">Smart Search</h3>
-              <p className="text-[10px] text-slate-500 hidden sm:block">Instant hyper-local results</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 lg:border-l border-slate-100 lg:pl-4">
-            <div className="w-10 h-10 rounded-xl bg-violet-50 text-[#431B94] flex items-center justify-center shrink-0">
-              <Headphones size={20} strokeWidth={2.2} />
-            </div>
-            <div>
-              <h3 className="font-extrabold text-slate-900 text-xs sm:text-sm">24/7 Support</h3>
-              <p className="text-[10px] text-slate-500 hidden sm:block">Dedicated business care</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 lg:border-l border-slate-100 lg:pl-4">
-            <div className="w-10 h-10 rounded-xl bg-violet-50 text-[#431B94] flex items-center justify-center shrink-0">
-              <TrendingUp size={20} strokeWidth={2.2} />
-            </div>
-            <div>
-              <h3 className="font-extrabold text-slate-900 text-xs sm:text-sm">Grow Fast</h3>
-              <p className="text-[10px] text-slate-500 hidden sm:block">AI-powered rank engine</p>
-            </div>
+        {/* Footer Bottom Bar */}
+        <div className="flex flex-col sm:flex-row items-center justify-between border-t border-slate-100 pt-6 text-xs text-slate-500 font-medium gap-3">
+          <p>© 2026 BizDial. Verified Business Ranking Directory. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="hover:text-[#0066FF] transition-colors">Privacy</Link>
+            <span>•</span>
+            <Link href="/terms" className="hover:text-[#0066FF] transition-colors">Terms</Link>
+            <span>•</span>
+            <Link href="/sitemap" className="hover:text-[#0066FF] transition-colors">Sitemap</Link>
           </div>
         </div>
-
-        {/* Bottom Copyright & Legal */}
-        <div className="border-t border-slate-200/70 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-          <p className="text-xs text-slate-500 font-medium">
-            &copy; {new Date().getFullYear()} BizDial. All Rights Reserved.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-500 font-medium">
-            <a href="#" className="hover:text-[#431B94] transition-colors">Privacy Policy</a>
-            <span className="text-slate-300">&bull;</span>
-            <a href="#" className="hover:text-[#431B94] transition-colors">Terms of Use</a>
-            <span className="text-slate-300">&bull;</span>
-            <a href="#" className="hover:text-[#431B94] transition-colors">Sitemap</a>
-          </div>
-          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full border border-slate-200/80 shadow-xs">
-            <Image src="https://flagcdn.com/24x18/in.png" alt="India Flag" className="rounded-xs" width={24} height={18} />
-            <span className="text-slate-700 text-xs font-bold">India</span>
-          </div>
-        </div>
-
       </div>
     </footer>
   );

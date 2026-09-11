@@ -4,8 +4,8 @@ import { getSEOMetadata } from '@/shared/lib/seo';
 import { API_BASE } from '@/shared/services/config';
 
 export const metadata: Metadata = getSEOMetadata({
-  title: "BizDial - Find. Connect. Grow.",
-  description: "Everything you need, all in one place — with BizDial. Find local businesses, read verified reviews, and connect instantly.",
+  title: "BizDial - Rank Your Business & Find Top Rated",
+  description: "India's #1 verified local business ranking directory. Discover top-ranked businesses, verified customer ratings, and honest reviews. List and rank your business.",
   canonicalUrl: "/",
 });
 

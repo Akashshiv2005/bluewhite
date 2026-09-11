@@ -34,3 +34,9 @@ backend/uploads/
 *.ps1
 backend/fix_existing_slugs.py
 *.log
+step_*.tsx
+dump_*.py
+restore_*.py
+clean_*.py
+find_*.py
+

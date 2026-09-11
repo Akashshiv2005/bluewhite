@@ -1,117 +1,238 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { MapPin, ChevronDown, Menu, X, User as UserIcon, Building } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, ChevronDown, Menu, X, User, Sparkles, ArrowRight, Navigation, Loader2 } from 'lucide-react';
+import { useLocationContext } from '@/shared/context/LocationContext';
 
 interface HeaderProps {
-  userLocation: string;
+  userLocation?: string;
 }
 
 export default function Header({ userLocation }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLocationModal, setShowLocationModal] = useState(false);
+  const locationMenuRef = useRef<HTMLDivElement>(null);
+
+  const { location, setCustomLocation, detectLocation } = useLocationContext();
+
+  // Active city displayed: unified from shared LocationContext or fallback
+  const activeCity = location.city || userLocation || 'Tiruchirappalli';
+
+  const popularCities = [
+    'Tiruchirappalli',
+    'Kochi',
+    'Chennai',
+    'Bangalore',
+    'Mumbai',
+    'Delhi',
+    'Coimbatore',
+    'Madurai'
+  ];
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (locationMenuRef.current && !locationMenuRef.current.contains(event.target as Node)) {
+        setShowLocationModal(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Top Categories', href: '#categories' },
+    { name: 'How BizDial Works', href: '#how-it-works' },
+    { name: 'How Ranking Works', href: '#ranking' },
+    { name: 'Reviews', href: '#reviews' },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-slate-200/50 shadow-xs py-3.5 transition-all duration-300">
-      <div className="max-w-[1400px] mx-auto px-4 lg:px-8 flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-gradient-to-r from-[#d8efff] via-[#7ec5fc] to-[#34aafd] border-b border-white/25 shadow-[0_2px_12px_rgba(0,102,255,0.08)] transition-all h-16 flex items-center">
+      <div className="max-w-[1400px] w-full mx-auto px-4 lg:px-8 flex items-center justify-between">
         
-        <div className="flex items-center gap-6">
-          <Link href="/" className="text-3xl font-black tracking-tight shrink-0 flex items-center group">
-            <span className="text-slate-900 font-extrabold tracking-tight">Biz</span>
-            <span className="text-[#431B94] font-black tracking-tight flex items-center">
-              Dial<motion.span animate={{ opacity: [1, 0.4, 1] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="inline-block w-2.5 h-2.5 bg-[#431B94] rounded-full ml-0.5"></motion.span>
-            </span>
-          </Link>
-          <div className="hidden md:flex items-center bg-[#F5F3FF] border border-[#E9E3FF] rounded-full px-4 py-2 cursor-pointer hover:bg-[#EDE9FE] transition-colors shadow-2xs">
-            <MapPin size={16} className="text-[#431B94] mr-2 shrink-0" />
-            <span className="text-sm font-bold text-slate-800 mr-1 capitalize">{userLocation || 'Your Area'}</span>
-            <ChevronDown size={14} className="text-slate-600" />
+        {/* Compact & Sleek Logo */}
+        <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+          <div className="w-8 h-8 rounded-xl bg-white text-[#0066FF] flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+            <Sparkles size={16} className="text-[#0066FF] fill-[#0066FF]/20" />
           </div>
-        </div>
+          <div className="flex items-baseline">
+            <span className="text-[21px] font-black tracking-tight text-slate-900">Biz</span>
+            <span className="text-[21px] font-black tracking-tight text-[#0052CC]">Dial</span>
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#0052CC] ml-0.5 mb-1" />
+          </div>
+        </Link>
 
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-          {[
-            { name: 'Categories', id: 'categories' },
-            { name: 'How it Works', id: 'how-it-works' },
-            { name: 'For Business', id: 'for-business' },
-          ].map((item) => (
-            <button 
-              key={item.name}
-              onClick={() => {
-                const el = document.getElementById(item.id);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="text-sm font-bold text-slate-800 hover:text-[#431B94] cursor-pointer transition-colors bg-transparent border-none p-0"
-            >
-              {item.name}
-            </button>
-          ))}
+        {/* Minimalist Pill Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-1 ml-6">
+          {navLinks.map((item) => {
+            const isActive = item.name === 'Home';
+            return (
+              <Link 
+                key={item.name}
+                href={item.href}
+                className={`inline-flex items-center justify-center h-8 px-4 rounded-full text-xs font-extrabold leading-none transition-all ${
+                  isActive 
+                    ? 'bg-white text-[#0052CC] shadow-xs' 
+                    : 'text-slate-900 hover:text-white hover:bg-white/25'
+                }`}
+              >
+                <span className="leading-none pt-[1px]">{item.name}</span>
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3.5 ml-6">
-          <Link href="/login" className="flex items-center gap-2 text-[#431B94] font-bold border border-[#431B94]/70 px-5 py-2 rounded-full hover:bg-violet-50 transition-colors shadow-2xs text-sm">
-            <UserIcon size={17} strokeWidth={2.2} /> Login
+        {/* Right Actions: Location, Login & List Business */}
+        <div className="hidden lg:flex items-center gap-3 ml-auto">
+          {/* Synchronized Location Indicator with Elevation Animation */}
+          <div ref={locationMenuRef} className="relative">
+            <button 
+              onClick={() => setShowLocationModal(!showLocationModal)}
+              className="inline-flex items-center justify-center gap-1.5 bg-white/95 hover:bg-white border border-white/80 rounded-full px-3.5 h-8 text-xs font-bold text-slate-800 transition-all cursor-pointer shadow-xs hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 leading-none"
+              title="Click to change location or use GPS"
+            >
+              <MapPin size={13} className="text-[#0066FF] shrink-0" />
+              <span className="max-w-[125px] truncate capitalize leading-none pt-[1px]">{activeCity}</span>
+              <ChevronDown size={12} className={`text-slate-500 shrink-0 transition-transform duration-200 ${showLocationModal ? 'rotate-180' : ''}`} />
+            </button>
+
+            {/* Location Dropdown Modal */}
+            <AnimatePresence>
+              {showLocationModal && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-full mt-2 w-72 bg-white rounded-2xl p-3 shadow-xl border border-blue-100 z-50 text-slate-800"
+                >
+                  <div className="text-[10.5px] font-black text-slate-400 uppercase tracking-wider mb-2 px-1">
+                    Select Your City
+                  </div>
+
+                  {/* GPS Detect Button */}
+                  <button
+                    onClick={() => {
+                      detectLocation();
+                      setShowLocationModal(false);
+                    }}
+                    className="w-full flex items-center gap-2 px-3 py-2 rounded-xl bg-blue-50 text-[#0066FF] hover:bg-blue-100/80 transition-colors text-xs font-bold mb-2.5 cursor-pointer shadow-2xs"
+                  >
+                    {location.loading ? (
+                      <Loader2 size={14} className="animate-spin" />
+                    ) : (
+                      <Navigation size={14} className="fill-[#0066FF]" />
+                    )}
+                    <span>Use Current Location (GPS)</span>
+                  </button>
+
+                  <div className="text-[10.5px] font-black text-slate-400 uppercase tracking-wider mb-1.5 px-1">
+                    Popular Cities
+                  </div>
+                  <div className="grid grid-cols-2 gap-1 mb-1">
+                    {popularCities.map((city) => (
+                      <button
+                        key={city}
+                        onClick={() => {
+                          setCustomLocation(city);
+                          setShowLocationModal(false);
+                        }}
+                        className={`text-left text-xs px-2.5 py-1.5 rounded-lg transition-colors font-semibold truncate cursor-pointer ${
+                          activeCity.toLowerCase().includes(city.toLowerCase())
+                            ? 'bg-[#0066FF] text-white font-bold'
+                            : 'hover:bg-slate-50 text-slate-700'
+                        }`}
+                      >
+                        {city}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <div className="h-4 w-px bg-white/40" />
+
+          {/* Discreet Sign In */}
+          <Link 
+            href="/login" 
+            className="inline-flex items-center justify-center gap-1.5 text-xs font-extrabold text-slate-900 hover:text-[#0052CC] bg-white/90 hover:bg-white px-3.5 h-8 rounded-full shadow-2xs transition-all hover:-translate-y-0.5 leading-none"
+          >
+            <User size={13} className="text-slate-600" />
+            <span className="leading-none pt-[1px]">Sign In</span>
           </Link>
-          <Link href="/register" className="flex items-center gap-2 bg-[#431B94] hover:bg-[#2D0F66] text-white font-bold px-5 py-2.5 rounded-full transition-all shadow-md shadow-[#431B94]/25 text-sm">
-            <Building size={17} /> List Your Business
+
+          {/* Compact CTA */}
+          <Link 
+            href="/register" 
+            className="inline-flex items-center justify-center gap-1.5 bg-[#0052CC] hover:bg-[#003db3] text-white text-xs font-extrabold px-4 h-8 rounded-full shadow-[0_2px_10px_rgba(0,40,150,0.35)] hover:shadow-[0_4px_16px_rgba(0,40,150,0.45)] border border-white/30 transition-all hover:-translate-y-0.5 leading-none"
+          >
+            <span className="leading-none pt-[1px]">+ List Business</span>
           </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button 
           aria-label="Toggle mobile menu"
-          className="lg:hidden p-2 text-slate-700 hover:text-[#431B94] transition-colors"
+          className="lg:hidden p-2 rounded-xl text-slate-900 hover:text-white hover:bg-white/20 transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
       </div>
 
-      {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-100 p-4 absolute top-full left-0 right-0 shadow-xl flex flex-col gap-4 z-50">
-          <div className="flex items-center bg-violet-50 border border-violet-100 rounded-xl px-4 py-3 mb-2">
-            <MapPin size={18} className="text-[#431B94] mr-2" />
-            <span className="text-sm font-bold text-slate-800 mr-1 flex-1">{userLocation}</span>
-            <ChevronDown size={16} className="text-slate-600" />
-          </div>
-          <nav className="flex flex-col gap-2">
-            {[
-              { name: 'Categories', id: 'categories' },
-              { name: 'How it Works', id: 'how-it-works' },
-              { name: 'For Business', id: 'for-business' },
-            ].map((item) => (
-              <button 
-                key={item.name}
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  const el = document.getElementById(item.id);
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="text-left py-3 px-4 rounded-xl text-sm font-bold text-slate-700 hover:bg-violet-50 hover:text-[#431B94] transition-colors"
+      {/* Mobile Dropdown Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            className="lg:hidden bg-[#d8efff] border-b border-blue-200/80 p-4 absolute top-full left-0 right-0 shadow-xl flex flex-col gap-3 z-50"
+          >
+            <div className="flex items-center bg-white border border-blue-200/80 rounded-xl px-3.5 py-2.5 shadow-2xs">
+              <MapPin size={15} className="text-[#0066FF] mr-2 shrink-0" />
+              <span className="text-xs font-bold text-slate-800 mr-1 flex-1 capitalize">{activeCity}</span>
+              <span className="text-[10px] bg-blue-100 text-[#0066FF] font-bold px-1.5 py-0.5 rounded">GPS</span>
+            </div>
+
+            <nav className="flex flex-col gap-1">
+              {navLinks.map((item) => (
+                <Link 
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="py-2 px-3 rounded-lg text-xs font-extrabold text-slate-800 hover:bg-white hover:text-[#0052CC] transition-colors"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="flex items-center gap-2 pt-2 border-t border-blue-200/60">
+              <Link 
+                href="/login" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex-1 flex items-center justify-center gap-1.5 text-slate-800 font-extrabold bg-white text-xs py-2.5 rounded-full shadow-2xs hover:bg-slate-50 transition-colors"
               >
-                {item.name}
-              </button>
-            ))}
-          </nav>
-          <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-slate-100">
-            <Link 
-              href="/login" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 text-violet-700 font-bold border border-[#431B94]/80 px-6 py-3 rounded-xl hover:bg-violet-50 transition-colors"
-            >
-              <UserIcon size={18} strokeWidth={2.2} /> Login
-            </Link>
-            <Link 
-              href="/register" 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 bg-[#431B94] hover:bg-violet-700 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md shadow-[#431B94]/20"
-            >
-              List Your Business
-            </Link>
-          </div>
-        </div>
-      )}
+                <User size={14} /> Sign In
+              </Link>
+              <Link 
+                href="/register" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex-1 flex items-center justify-center gap-1.5 bg-[#0052CC] hover:bg-[#003db3] text-white font-extrabold text-xs py-2.5 rounded-full transition-all shadow-sm"
+              >
+                <span>+ List Business</span>
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
+
